@@ -19,6 +19,25 @@ This mod acts as a proxy wrapper for the system `version.dll`.
 
 ---
 
+## Antivirus False Positives
+> [!NOTE]
+> Some antivirus engines (notably Windows Defender) may flag `version.dll` with a heuristic name such as `Trojan:Win32/Wacatac.C!ml`. The `!ml` suffix means the detection comes from a **machine-learning heuristic**, not a signature match against a known threat. `Wacatac` is a generic catch-all label.
+
+This is a **false positive**. The fix is flagged because its legitimate technique shares a shape with code-injection malware:
+
+* **It is named `version.dll` and placed next to the game.** Loading a DLL that shadows a system library name is a well-known pattern used by both mods and malware, and heuristics cannot tell them apart.
+* **It patches memory inside `Game.dll`.** To bypass the `ProtectProcess` DACL change, it makes a single `call` instruction writable, rewrites it to point at the fix, and flushes the instruction cache. This "find address → make writable → patch bytes" sequence is what the ML model reads as injection.
+* **It modifies its own process DACL.** Re-opening the executable path to `PROCESS_QUERY_LIMITED_INFORMATION` requires setting an access-control list, which heuristics associate with persistence or hiding.
+
+All three behaviours are the fix itself and apply **only to Warcraft III's own process**. The DLL makes no network connections, writes nothing to disk, and does not persist. You can verify this by auditing `src/version.c` and compiling it yourself (see below).
+
+**If you want to use the pre-compiled binary:**
+1. Audit the source or build it yourself from `src/`.
+2. Add your Warcraft III folder to your antivirus exclusions.
+3. Optionally, submit the file to [Microsoft's false-positive form](https://www.microsoft.com/en-us/wdsi/filesubmission) so the detection can be reviewed.
+
+---
+
 ## Installation
 
 1. Download the pre-compiled `version.dll` from the latest release.
