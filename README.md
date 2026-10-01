@@ -86,4 +86,4 @@ i686-w64-mingw32-gcc -O2 -Wall -shared -o version.dll version.c version.def -lve
 Once compiled, grab your newly generated `version.dll` and move it to your game folder.
 
 ## License
-This project is open-source and available under the [MIT License](LICENSE).
+W3 RTX HDR Fix is a mod for Warcraft III 1.26a, MIT licensed, see `LICENSE`. Author: [Hr0ffT](https://github.com/Hr0ffT).
