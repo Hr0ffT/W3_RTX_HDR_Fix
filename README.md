@@ -11,6 +11,17 @@ This mod acts as a proxy wrapper for the system `version.dll`.
 2. It dynamically patches the memory inside `Game.dll` to bypass the restrictive DACL change, leaving the executable path readable to external software (specifically `PROCESS_QUERY_LIMITED_INFORMATION`).
 3. It transparently forwards all standard calls to the legitimate Windows `C:\Windows\SysWOW64\version.dll` library.
 
+## Required Companion: dgVoodoo 2
+> [!IMPORTANT]
+> Warcraft III 1.26a renders through **DirectX 8**, and the NVIDIA App cannot apply **RTX HDR** to a native DX8 swapchain. You must run the game through [**dgVoodoo 2**](http://dege.freeweb.hu/dgVoodoo2/dgVoodoo2/), which wraps the old DX8 output into a modern DirectX 11/12 device that the NVIDIA overlay can hook.
+
+This fix and dgVoodoo 2 solve two different halves of the same problem and are meant to be used **together**:
+
+* **dgVoodoo 2** translates DX8 → DX11/12 so that RTX HDR *can* be applied at all.
+* **This `version.dll` fix** keeps the NVIDIA App from *resetting* your profile and RTX HDR settings on every launch.
+
+Without dgVoodoo 2, RTX HDR will not work on Warcraft III regardless of this fix. Without this fix, your dgVoodoo + RTX HDR profile will reset each time you start the game.
+
 ---
 
 ## Important Anti-Cheat Warning
