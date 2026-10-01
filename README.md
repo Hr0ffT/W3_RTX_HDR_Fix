@@ -87,3 +87,5 @@ Once compiled, grab your newly generated `version.dll` and move it to your game 
 
 ## License
 W3 RTX HDR Fix is a mod for Warcraft III 1.26a, MIT licensed, see `LICENSE`. Author: [Hr0ffT](https://github.com/Hr0ffT).
+
+Warcraft III is a trademark of Blizzard Entertainment. This project is not affiliated with Blizzard.
