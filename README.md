@@ -15,7 +15,7 @@ This mod acts as a proxy wrapper for the system `version.dll`.
 
 ## Important Anti-Cheat Warning
 > [!WARNING]
-> Since this modification hooks internal memory structures inside `Game.dll` at runtime, **third-party anti-cheat software or custom multiplayer platforms** (such as iCCup, Eurobattle, or local tournament clients) **may flags this DLL as a hack/modification** and ban your account. Use this fix at your own risk. It is highly recommended for offline/LAN use or single-player campaigns only.
+> Since this modification hooks internal memory structures inside `Game.dll` at runtime, **third-party anti-cheat software or custom multiplayer platforms** (such as iCCup, Eurobattle, or local tournament clients) **may flag this DLL as a hack/modification** and ban your account. Use this fix at your own risk. It is highly recommended for offline/LAN use or single-player campaigns only.
 
 ---
 
